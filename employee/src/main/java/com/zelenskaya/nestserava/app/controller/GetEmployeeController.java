@@ -1,7 +1,7 @@
 package com.zelenskaya.nestserava.app.controller;
 
 import com.zelenskaya.nestserava.app.service.SearchEmployeeService;
-import com.zelenskaya.nestserava.app.service.SelectEmployeeService;
+import com.zelenskaya.nestserava.app.service.SelectEmployeeByIdService;
 import com.zelenskaya.nestserava.app.service.exception.ServiceEmployeeException;
 import com.zelenskaya.nestserava.app.service.model.AddEmployeeDTO;
 import com.zelenskaya.nestserava.app.service.model.PaginationDTO;
@@ -29,7 +29,7 @@ import java.util.List;
 public class GetEmployeeController {
     private final EmployeeControllerConstants constants;
     private final SearchEmployeeService searchService;
-    private final SelectEmployeeService selectEmployeeService;
+    private final SelectEmployeeByIdService selectEmployeeService;
 
     @GetMapping(value = "/{employeeId}")
     public ResponseEntity<Object> getById(@PathVariable Long employeeId) {

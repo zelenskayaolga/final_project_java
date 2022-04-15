@@ -82,7 +82,7 @@ class IntegrationAuthorizationTest extends BaseIT {
     @Sql("/sql/logout.sql")
     void closeSession() {
         HttpHeaders headers = new HttpHeaders();
-        String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ6ZWxlbnNrYXlhb2xnYSIsInVzZXJJZCI6MTAsImlhdCI6MTY0ODU3Njg5OCwiZXhwIjoxNjQ4ODM2MDk4fQ.Z4S7mTpbIw7uhX7aX0PD5wNRbIilJ59G-4clO7BTM_zpOdNcL4vl9cW8CbAFFNEVXHjC7MSocLD0-NakO-Tt_Q";
+        String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ6ZWxlbnNrYXlhb2xnYSIsInVzZXJJZCI6MTAsImlhdCI6MTY1MDA0NzU5OCwiZXhwIjoxNjUwMzA2Nzk4fQ.WCUXs7grEMx6uJm8_diHftZGwqdLLRCJtiF1TBnGU3rZ0ZkoZPIp5XabPR2KUgSYgiYMQI9vWhKmzcWHpmFi_g";
         headers.add(HttpHeaders.AUTHORIZATION, "Bearer " + token);
         headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
 

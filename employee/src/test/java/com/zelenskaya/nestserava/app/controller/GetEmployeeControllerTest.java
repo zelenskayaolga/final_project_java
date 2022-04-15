@@ -6,7 +6,7 @@ import com.zelenskaya.nestserava.app.controller.security.point.AuthEntryPointJwt
 import com.zelenskaya.nestserava.app.controller.security.util.JwtUtilsEmployee;
 import com.zelenskaya.nestserava.app.service.PostJwtService;
 import com.zelenskaya.nestserava.app.service.SearchEmployeeService;
-import com.zelenskaya.nestserava.app.service.SelectEmployeeService;
+import com.zelenskaya.nestserava.app.service.SelectEmployeeByIdService;
 import com.zelenskaya.nestserava.app.service.exception.ServiceEmployeeException;
 import com.zelenskaya.nestserava.app.service.model.AddEmployeeDTO;
 import com.zelenskaya.nestserava.app.service.model.PaginationDTO;
@@ -50,7 +50,7 @@ class GetEmployeeControllerTest {
     @MockBean
     private SearchEmployeeService searchEmployeeService;
     @MockBean
-    private SelectEmployeeService employeeService;
+    private SelectEmployeeByIdService employeeService;
     @MockBean
     private JwtUtilsConfig jwtUtilsConfig;
     @MockBean

@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 class SelectEmployeeServiceImplTest {
 
     @InjectMocks
-    private SelectEmployeeServiceImpl selectEmployeeService;
+    private SelectEmployeeByIdServiceImpl selectEmployeeService;
 
     @Mock
     private EmployeeRepository employeeRepository;

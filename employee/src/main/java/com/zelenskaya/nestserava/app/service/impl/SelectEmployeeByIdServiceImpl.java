@@ -2,7 +2,7 @@ package com.zelenskaya.nestserava.app.service.impl;
 
 import com.zelenskaya.nestserava.app.repository.EmployeeRepository;
 import com.zelenskaya.nestserava.app.repository.model.Employee;
-import com.zelenskaya.nestserava.app.service.SelectEmployeeService;
+import com.zelenskaya.nestserava.app.service.SelectEmployeeByIdService;
 import com.zelenskaya.nestserava.app.service.convertor.EmployeeConvertor;
 import com.zelenskaya.nestserava.app.service.model.AddEmployeeDTO;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import javax.persistence.NoResultException;
 
 @Service
 @AllArgsConstructor
-public class SelectEmployeeServiceImpl implements SelectEmployeeService {
+public class SelectEmployeeByIdServiceImpl implements SelectEmployeeByIdService {
     private final EmployeeRepository employeeRepository;
     private final EmployeeConvertor employeeConvertor;
 

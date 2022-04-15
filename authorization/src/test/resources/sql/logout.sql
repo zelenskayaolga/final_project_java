@@ -4,8 +4,8 @@ VALUES (10, 'zelenskayaolga', '$2a$10$calWZWI8UQshR01YuRIuT.jCdVJ00G3NmJq.d2jYqm
         1, 1);
 
 INSERT INTO auth_session(id, creation_date, destruction_date, timeout_id, status_id, user_id)
-VALUES ('eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ6ZWxlbnNrYXlhb2xnYSIsInVzZXJJZCI6MTAsImlhdCI6MTY0ODU3Njg5OCwiZXhwIjoxNjQ4ODM2MDk4fQ.Z4S7mTpbIw7uhX7aX0PD5wNRbIilJ59G-4clO7BTM_zpOdNcL4vl9cW8CbAFFNEVXHjC7MSocLD0-NakO-Tt_Q',
-        '2022-03-29 21:01:38.242285', null, 1, 1, 10);
+VALUES ('eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ6ZWxlbnNrYXlhb2xnYSIsInVzZXJJZCI6MTAsImlhdCI6MTY1MDA0NzU5OCwiZXhwIjoxNjUwMzA2Nzk4fQ.WCUXs7grEMx6uJm8_diHftZGwqdLLRCJtiF1TBnGU3rZ0ZkoZPIp5XabPR2KUgSYgiYMQI9vWhKmzcWHpmFi_g',
+        '2022-04-15 21:33:18.519485', null, 1, 1, 10);
 
 INSERT INTO auth_user_details(user_id, creation_date, authorization_date, exit_date)
-VALUES (10, '2022-03-29 21:01:22.363562', null, null)
+VALUES (10, '2022-03-29 21:01:22.363562', '2022-03-30 15:27:38.920253', null)
