@@ -1,0 +1,66 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="1" author="zelenskaya.olga.89@mail.ru">
+        <createTable tableName="sm_type_legal">
+            <column name="id" type="serial">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="zelenskaya.olga.89@mail.ru">
+        <insert tableName="sm_type_legal">
+            <column name="name" value="RESIDENT"/>
+        </insert>
+        <insert tableName="sm_type_legal">
+            <column name="name" value="NO_RESIDENT"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="3" author="zelenskaya.olga.89@mail.ru">
+        <createTable tableName="sm_legal">
+            <column name="id" type="serial">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name_legal" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="unp" type="varchar">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="iban" type="varchar(28)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="total_employee" type="smallint(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_id" type="int">
+                <constraints foreignKeyName="type_id" references="sm_type_legal(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="4" author="zelenskaya.olga.89@mail.ru">
+        <createTable tableName="sm_legal_details">
+            <column name="legal_id" type="int">
+                <constraints primaryKey="true" foreignKeyName="legal_id" references="sm_legal(id)"
+                             deleteCascade="true"/>
+            </column>
+            <column name="creation_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_date" type="date">
+            </column>
+            <column name="note" type="text">
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,73 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="1" author="zelenskaya.olga.89@mail.ru">
+        <createTable tableName="em_position_legal">
+            <column name="id" type="serial">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="position" type="varchar(10)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="zelenskaya.olga.89@mail.ru">
+        <insert tableName="em_position_legal">
+            <column name="position" value="HIRED"/>
+        </insert>
+        <insert tableName="em_position_legal">
+            <column name="position" value="DISMISSED"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="3" author="zelenskaya.olga.89@mail.ru">
+        <createTable tableName="em_employee_company">
+            <column name="id" type="serial">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="recruitment_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="termination_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="iban_byn" type="varchar(28)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="iban_currency" type="varchar(28)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="legal_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="position_id" type="int">
+                <constraints foreignKeyName="position_id" references="em_position_legal(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="4" author="zelenskaya.olga.89@mail.ru">
+        <createTable tableName="em_employee_details">
+            <column name="employee_id" type="int">
+                <constraints primaryKey="true" foreignKeyName="employee_id"
+                             references="em_employee_company(id)" deleteCascade="true"/>
+            </column>
+            <column name="create_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_update_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="note" type="text">
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

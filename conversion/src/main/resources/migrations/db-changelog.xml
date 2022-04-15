@@ -1,0 +1,121 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="1" author="zelenskaya.olga.89@mail.ru">
+        <createTable tableName="c_status">
+            <column name="id" type="serial">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="status" type="varchar(15)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="zelenskaya.olga.89@mail.ru">
+        <insert tableName="c_status">
+            <column name="status" value="NEW"/>
+        </insert>
+        <insert tableName="c_status">
+            <column name="status" value="IN_PROGRESS"/>
+        </insert>
+        <insert tableName="c_status">
+            <column name="status" value="DONE"/>
+        </insert>
+        <insert tableName="c_status">
+            <column name="status" value="REJECTED"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="3" author="zelenskaya.olga.89@mail.ru">
+        <createTable tableName="c_value_ind">
+            <column name="id" type="serial">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="value_ind" type="varchar(7)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="4" author="zelenskaya.olga.89@mail.ru">
+        <insert tableName="c_value_ind">
+            <column name="value_ind" value="USD"/>
+        </insert>
+        <insert tableName="c_value_ind">
+            <column name="value_ind" value="EUR"/>
+        </insert>
+        <insert tableName="c_value_ind">
+            <column name="value_ind" value="RUB"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="8" author="zelenskaya.olga.89@mail.ru">
+        <createTable tableName="c_value_leg">
+            <column name="id" type="serial">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="value_leg" type="varchar(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="9" author="zelenskaya.olga.89@mail.ru">
+        <insert tableName="c_value_leg">
+            <column name="value_leg" value="BYN"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="6" author="zelenskaya.olga.89@mail.ru">
+        <createTable tableName="с_application_сonv">
+            <column name="id" type="serial">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="application_conv_id" type="varchar(36)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="legal_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="employee_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value_leg_id" type="int">
+                <constraints foreignKeyName="value_leg_id" references="c_value_leg(id)"/>
+            </column>
+            <column name="value_ind_id" type="int">
+                <constraints foreignKeyName="value_ind_id" references="c_value_ind(id)"/>
+            </column>
+            <column name="percent_conv" type="real">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status_id" type="int">
+                <constraints foreignKeyName="status_id" references="c_status(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="7" author="zelenskaya.olga.89@mail.ru">
+        <createTable tableName="c_application_details">
+            <column name="application_id" type="int">
+                <constraints primaryKey="true" foreignKeyName="application_id"
+                             references="с_application_сonv(id)" deleteCascade="true"/>
+            </column>
+            <column name="create_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_update_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_user_id" type="int">
+            </column>
+            <column name="note" type="text">
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

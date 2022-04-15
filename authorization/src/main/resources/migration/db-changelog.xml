@@ -1,0 +1,139 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="1" author="zelenskaya.olga.89@mail.ru">
+        <createTable tableName="auth_status">
+            <column name="id" type="serial">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar">
+                <constraints unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="zelenskaya.olga.89@mail.ru">
+        <createTable tableName="auth_role">
+            <column name="id" type="serial">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="role" type="varchar(50)">
+                <constraints unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3" author="zelenskaya.olga.89@mail.ru">
+        <createTable tableName="auth_user">
+            <column name="id" type="serial">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="login" type="varchar(100)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="password" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="e_mail" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status_id" type="int">
+                <constraints foreignKeyName="status_id" references="auth_status(id)"/>
+            </column>
+            <column name="role_id" type="int">
+                <constraints foreignKeyName="role_id" references="auth_role(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="4" author="zelenskaya.olga.89@mail.ru">
+        <createTable tableName="auth_timeout">
+            <column name="id" type="serial">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="period" type="integer">
+                <constraints unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="5" author="zelenskaya.olga.89@mail.ru">
+        <createTable tableName="auth_session">
+            <column name="id" type="varchar">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="creation_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="destruction_date" type="timestamp">
+            </column>
+            <column name="timeout_id" type="int">
+                <constraints foreignKeyName="timeout_id" references="auth_timeout(id)"/>
+            </column>
+            <column name="status_id" type="int">
+                <constraints foreignKeyName="status_id" references="auth_status(id)"/>
+            </column>
+            <column name="user_id" type="int">
+                <constraints foreignKeyName="user_id" references="auth_user(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="6" author="zelenskaya.olga.89@mail.ru">
+        <insert tableName="auth_role">
+            <column name="role" value="ROLE_EMPLOYEE"/>
+        </insert>
+        <insert tableName="auth_role">
+            <column name="role" value="ROLE_ADMIN"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="7" author="zelenskaya.olga.89@mail.ru">
+        <insert tableName="auth_status">
+            <column name="name" value="ACTIVE"/>
+        </insert>
+        <insert tableName="auth_status">
+            <column name="name" value="DISABLED"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="8" author="zelenskaya.olga.89@mail.ru">
+        <insert tableName="auth_timeout">
+            <column name="period" value="72"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="9" author="zelenskaya.olga.89@mail.ru">
+        <createTable tableName="auth_user_details">
+            <column name="user_id" type="int">
+                <constraints primaryKey="true" foreignKeyName="user_id" references="auth_user(id)"
+                             deleteCascade="true"/>
+            </column>
+            <column name="creation_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="authorization_date" type="timestamp">
+            </column>
+            <column name="exit_date" type="timestamp">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="10" author="zelenskaya.olga.89@mail.ru">
+        <createTable tableName="auth_user_attempts">
+            <column name="user_id" type="int">
+                <constraints primaryKey="true" foreignKeyName="user_id" references="auth_user(id)"
+                             deleteCascade="true"/>
+            </column>
+            <column name="quantity" type="int">
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

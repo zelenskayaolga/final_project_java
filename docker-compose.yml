@@ -1,0 +1,58 @@
+version: "3.9"
+
+services:
+  postgres_auth:
+    container_name: postgres_auth
+    image: postgres:13.3
+    environment:
+      POSTGRES_DB: "postgres"
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "1234"
+    volumes:
+      - ./data/auth:/var/lib/postgresql/data
+    ports:
+      - "5437:5437"
+    command:
+      -p 5437
+
+  postgres_company:
+    container_name: postgres_company
+    image: postgres:13.3
+    environment:
+      POSTGRES_DB: "postgres"
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "1234"
+    volumes:
+      - ./data/company:/var/lib/postgresql/data
+    ports:
+      - "5433:5433"
+    command:
+      -p 5433
+
+  postgres_employee:
+    container_name: postgres_employee
+    image: postgres:13.3
+    environment:
+      POSTGRES_DB: "postgres"
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "1234"
+    volumes:
+      - ./data/employee:/var/lib/postgresql/data
+    ports:
+      - "5434:5434"
+    command:
+      -p 5434
+
+  postgres_conversion:
+    container_name: postgres_conversion
+    image: postgres:13.3
+    environment:
+      POSTGRES_DB: "postgres"
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "1234"
+    volumes:
+      - ./data/conversion:/var/lib/postgresql/data
+    ports:
+      - "5435:5435"
+    command:
+      -p 5435
